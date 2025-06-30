@@ -1,0 +1,1006 @@
+/* ============================
+   Full‑Height Layout
+   (Ensures the page fills the viewport and the footer sticks to the bottom)
+============================ */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  background: var(--light-bg);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+/* The main content container should fill the available space */
+#mainContent {
+  flex: 1;
+}
+
+/* ============================
+   Base Light Mode Variables
+============================ */
+:root {
+  --primary-color: #6a4cac;
+  --secondary-color: #4a2e8a;
+  --accent-color: #e74c3c;
+  --light-bg: #f5f5f5;
+  --card-background: #fff;
+  --text-color: #333;
+  --muted-text: #666;
+  --transition-speed: 0.3s;
+  --transition-speed-fast: 0.2s;
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --overlay-background: rgba(0, 0, 0, 0.5);
+  --popup-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  --border-color: #ccc;
+}
+
+/* Dark Mode Overrides */
+body.dark-mode {
+  --primary-color: #4a2e8a;
+  --secondary-color: #321b66;
+  --accent-color: #c0392b;
+  --light-bg: #1e1e1e;
+  --card-background: #2b2b2b;
+  --text-color: #eee;
+  --muted-text: #aaa;
+  --transition-speed: 0.3s;
+}
+
+/* ============================
+   Global Styles
+============================ */
+.wrapper {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ============================
+   Top Bar & Navigation
+============================ */
+#topbar {
+  background: var(--primary-color);
+  padding: 1rem 0;
+  color: var(--card-background);
+}
+#topbar .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navtop {
+  background: var(--secondary-color);
+  color: var(--card-background);
+  padding: 1rem;
+  transition: background var(--transition-speed), color var(--transition-speed);
+}
+.navtop > .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navtop a {
+  color: var(--card-background);
+  text-decoration: none;
+  margin-left: 1rem;
+  font-size: 1rem;
+  transition: text-decoration var(--transition-speed);
+}
+.navtop a:hover {
+  text-decoration: underline;
+}
+.dark-mode-btn {
+  background: var(--primary-color);
+  color: var(--card-background);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background var(--transition-speed), transform var(--transition-speed);
+}
+.dark-mode-btn:hover {
+  background: #3a237a;
+  transform: translateY(-2px);
+}
+
+/* ============================
+   Avatar Popup Button Styling
+============================ */
+#openSkinboxBtn {
+  background: var(--primary-color);
+  color: var(--card-background);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background var(--transition-speed);
+  margin-left: 1rem;
+}
+#openSkinboxBtn:hover {
+  background: #3a237a;
+}
+
+/* ============================
+   Chat Layout
+============================ */
+/* Main Chat Wrapper (always centered) */
+.chat-wrapper {
+  display: flex;
+  flex-direction: row;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Public Chat Log & Graphical Area */
+.chat-log {
+  flex: 1;
+  padding: 10px;
+  background: var(--card-background);
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  margin-left: 15px;
+}
+.graphical-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Konva Container (Canvas) */
+#konvaContainer {
+  flex: 1;
+  background: url('server/img/background.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+/* Message Input Area */
+.message-input {
+  padding: 10px;
+  background: var(--light-bg);
+  border-top: 1px solid #ccc;
+}
+.message-input form {
+  display: flex;
+  align-items: center;
+}
+.message-input input[type="text"] {
+  flex-grow: 1;
+  padding: 8px;
+  margin-right: 10px;
+  font-size: 16px;
+}
+.message-input button {
+  padding: 8px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  background: var(--secondary-color);
+  color: var(--card-background);
+  border: none;
+  border-radius: 4px;
+  transition: background var(--transition-speed);
+}
+.message-input button:hover {
+  background: #3a237a;
+}
+
+/* ============================
+   Public Chat Messages (Plain Style)
+============================ */
+.chat-message {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 0.9em;
+  word-wrap: break-word;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.chat-message.sent {
+  text-align: right;
+}
+.chat-message.received {
+  text-align: left;
+}
+
+/* System Messages: Different styling */
+.chat-message.system {
+  background-color: #ececec;
+  border-color: #bbb;
+  color: #333;
+  font-style: italic;
+  text-align: center;
+  padding: 12px;
+  margin: 8px 0;
+}
+.chat-message.system strong {
+  color: #cc0000;
+}
+
+/* Timestamp */
+.timestamp {
+  color: #999;
+  font-size: 12px;
+}
+
+/* Delete Button (if used) */
+.delete-btn {
+  background-color: var(--accent-color);
+  color: var(--card-background);
+  border: none;
+  padding: 4px 8px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+/* Loading message style */
+.loading-message {
+  text-align: center;
+  padding: 10px;
+  color: #666;
+  font-style: italic;
+}
+
+/* ============================
+   DM Sidebar (Modern & Toggleable)
+============================ */
+/* Replace the old #dmUsers block with #dmSidebar */
+#dmSidebar {
+  background: var(--card-background);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 100px;
+  left: 0;
+  z-index: 3900;
+  transition: transform var(--transition-speed) ease;
+}
+#dmSidebar.closed {
+  transform: translateX(-320px);
+}
+
+/* ============================
+   DM Sidebar Tab Styling
+============================ */
+.dm-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.dm-tab {
+  background: #eee;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+.dm-tab:hover {
+  background: #ddd;
+}
+.dm-tab.active {
+  background-color: #ccc;
+  font-weight: bold;
+}
+
+/* ============================
+   Online User List Styling
+============================ */
+#dmUserList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#dmUserList li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 10px;
+  background: var(--light-bg);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: background var(--transition-speed);
+}
+
+#dmUserList li:hover {
+  background: #f9f9f9;
+}
+
+#dmUserList li img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Username link styling */
+#dmUserList li .dm-username {
+  flex-grow: 1;
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+#dmUserList li .dm-username:hover {
+  text-decoration: underline;
+}
+/* Room Group Header in DM Sidebar */
+#dmUserList li.room-header {
+  background: var(--secondary-color);
+  color: var(--card-background);
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Slight indent for users under each room */
+#dmUserList li.room-user {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+/* Modernized Room Group Styling */
+.room-group {
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 15px;
+  box-shadow: var(--popup-shadow);
+}
+
+.room-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+/* Room user cards inside groups */
+.room-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-top: 1px solid #eee;
+}
+
+.room-user:first-of-type {
+  border-top: none;
+}
+
+.room-user img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.room-user .dm-username {
+  flex-grow: 1;
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.room-user .dm-username:hover {
+  text-decoration: underline;
+}
+
+.room-user button {
+  background: var(--secondary-color);
+  color: var(--card-background);
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+
+.room-user button:hover {
+  background: #3a237a;
+}
+
+/* ============================
+   Room List Styling in DM Sidebar
+============================ */
+#roomListContent ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#roomListContent ul li {
+  margin-bottom: 10px;
+}
+
+#roomListContent ul li a {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  background-color: var(--secondary-color);
+  color: var(--card-background);
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: background var(--transition-speed), transform var(--transition-speed);
+}
+
+#roomListContent ul li a:hover {
+  background-color: #3a237a;
+  transform: translateY(-2px);
+}
+
+/* Buttons for Gift Avatar, Chat, etc. */
+#dmUserList li button {
+  background: var(--secondary-color);
+  color: var(--card-background);
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background var(--transition-speed), transform var(--transition-speed);
+  margin-left: 5px;
+}
+
+#dmUserList li button:hover {
+  background: #3a237a;
+  transform: translateY(-2px);
+}
+
+/* ============================
+   DM Toggle Button
+============================ */
+#dmToggle {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  background: var(--secondary-color);
+  color: var(--card-background);
+  padding: 10px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  z-index: 4200;
+  font-size: 1.2rem;
+  display: block;
+}
+#dmToggle:hover {
+  background: #3a237a;
+}
+
+/* ============================
+   Private Chat Window Styles
+============================ */
+.private-chat-window {
+  position: absolute;
+  width: 320px;
+  height: 480px;
+  background: var(--card-background);
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  resize: both;
+  z-index: 3000;
+}
+.private-chat-header {
+  background: var(--secondary-color);
+  color: var(--card-background);
+  padding: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-bottom: 1px solid #ddd;
+  cursor: move;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.private-chat-header .close-btn {
+  cursor: pointer;
+  font-size: 1.2rem;
+  pointer-events: auto;
+}
+.private-chat-header .new-indicator {
+  background: var(--accent-color);
+  color: var(--card-background);
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8em;
+  display: none;
+  margin-left: 10px;
+}
+.private-chat-body {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background: var(--card-background);
+}
+.private-chat-footer {
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  background: var(--light-bg);
+  display: flex;
+  gap: 5px;
+}
+.private-chat-footer input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.private-chat-footer button {
+  padding: 8px 12px;
+  border: none;
+  background: var(--secondary-color);
+  color: var(--card-background);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+.private-chat-footer button:hover {
+  background: #3a237a;
+}
+
+/* Container for DM Windows */
+#privateChatsContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3950;
+  pointer-events: none;
+}
+.private-chat-window {
+  pointer-events: auto;
+}
+
+/* ============================
+   Modernized Skinbox UI
+============================ */
+#skinboxPopup {
+  position: fixed;
+  top: 100px;
+  left: 100px;
+  width: 600px;
+  max-width: 90%;
+  min-width: 320px;
+  min-height: 400px;
+  max-height: 90vh;
+  resize: both;
+  overflow: hidden;
+  background: var(--card-background);
+  box-shadow: var(--popup-shadow);
+  border-radius: var(--border-radius-medium);
+  z-index: 5000;
+  display: none;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
+}
+#skinboxPopup.visible {
+  display: flex;
+}
+#skinboxHeader {
+  background: var(--secondary-color);
+  color: var(--card-background);
+  padding: 10px 15px;
+  font-weight: bold;
+  cursor: move;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1em;
+  border-bottom: 1px solid #ccc;
+}
+#skinboxHeader .closePopup {
+  font-size: 1.4em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--card-background);
+  padding: 2px 8px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+#skinboxHeader .closePopup:hover {
+  background: rgba(255,255,255,0.1);
+}
+#skinboxContainer {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 12px;
+  overflow-y: auto;
+  flex: 1;
+}
+#skinboxContainer img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--border-radius-small);
+  border: 2px solid transparent;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+#skinboxContainer img:hover {
+  transform: scale(1.05);
+  border-color: var(--secondary-color);
+}
+#skinboxContainer img.selected-skin {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px var(--accent-color);
+}
+.delete-avatar-btn {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 18px;
+  height: 18px;
+  font-size: 14px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 18px;
+  text-align: center;
+  z-index: 10;
+  transition: background 0.2s ease;
+}
+.delete-avatar-btn:hover {
+  background: var(--accent-color);
+}
+#avatarAutoInput {
+  margin: 15px auto 10px auto;
+  display: block;
+  font-size: 0.95em;
+  color: var(--muted-text);
+  text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 800px) {
+  .chat-wrapper {
+    flex-direction: column;
+    margin-left: 0;
+  }
+  .chat-log {
+    margin-left: 0;
+    margin-top: 15px;
+  }
+}
+@media (max-width: 600px) {
+  #dmSidebar {
+    width: 100%;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+  }
+  .private-chat-window {
+    width: 90%;
+    height: 60%;
+    left: 5%;
+    top: 20%;
+  }
+  .message-input input[type="text"],
+  .message-input button {
+    font-size: 0.9em;
+  }
+}
+
+/* ============================
+   Draggable & Resizable Chat Log Container
+============================ */
+#chatLogContainer {
+  position: absolute;
+  top: 150px;
+  right: 30px;
+  width: 400px;
+  height: 400px;
+  resize: both;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background: var(--card-background);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 3500;
+}
+#chatLogHeader {
+  background: var(--secondary-color);
+  color: var(--card-background);
+  padding: 5px;
+  cursor: move;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+#chatLogContainer > #chatLog {
+  height: calc(100% - 30px);
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.notification-container {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  width: 300px;
+  z-index: 2000;
+}
+
+.notification {
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.notification.success { background-color: #4caf50; }
+.notification.error { background-color: #f44336; }
+.notification.show { opacity: 1; }
+.gift-popup {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 5000;
+  text-align: center;
+}
+.gift-popup button {
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+.avatar-select-popup {
+  position: fixed;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 5000;
+  text-align: center;
+  max-width: 400px;
+}
+.avatar-select-popup .avatars-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+.avatar-option {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+.avatar-option:hover {
+  border-color: #4caf50;
+}
+.avatar-select-popup button {
+  padding: 6px 12px;
+  border: none;
+  background-color: #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#afkToggleBtn {
+  background-color: var(--accent-color, #ffa500);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  margin-left: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+#afkToggleBtn:hover {
+  background-color: #e69500;
+  transform: scale(1.05);
+}
+#afkToggleBtn.active {
+  background-color: #c0392b;
+}
+.coinblock {
+  background: var(--dark-bg);
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: var(--popup-shadow);
+  font-weight: bold;
+}
+/* -------------------------------
+   Settings Popup (Volume Control)
+---------------------------------*/
+#settingsPopup {
+  max-width: 350px;
+  background-color: var(--card-background);
+  padding: 20px;
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--popup-shadow);
+  text-align: center;
+}
+
+/* Heading for the popup */
+#settingsPopup h3 {
+  font-size: 1.5em;
+  margin: 0 0 10px 0;
+  color: var(--primary-color);
+}
+
+/* Volume slider styling */
+#volumeSlider {
+  -webkit-appearance: none;  /* Remove default appearance for Webkit browsers */
+  width: 100%;
+  height: 8px;
+  background: var(--border-color);
+  border-radius: var(--border-radius-small);
+  outline: none;
+  opacity: 0.85;
+  transition: opacity var(--transition-speed);
+  margin: 10px 0;
+}
+#volumeSlider:hover {
+  opacity: 1;
+}
+
+/* Webkit Thumb */
+#volumeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  border: 2px solid var(--card-background);
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+#volumeSlider::-webkit-slider-thumb:hover {
+  background: var(--secondary-color);
+}
+
+/* Firefox Thumb */
+#volumeSlider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  border: 2px solid var(--card-background);
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+#volumeSlider::-moz-range-thumb:hover {
+  background: var(--secondary-color);
+}
+
+/* Firefox Track */
+#volumeSlider::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  background: var(--border-color);
+  border-radius: var(--border-radius-small);
+  outline: none;
+}
+
+/* Volume value display */
+#volumeValue {
+  font-weight: bold;
+  margin-top: 5px;
+  color: var(--text-color);
+}
+
+/* Close button inside settings popup */
+#settingsPopup button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: var(--border-radius-small);
+  background: var(--secondary-color);
+  color: var(--card-background);
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+#settingsPopup button:hover {
+  background: var(--primary-color);
+}
+.color-preview-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+#bubbleColorPicker {
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+}
+#currentBubbleColorLabel {
+  font-family: monospace;
+  padding: 5px 10px;
+  background: #eee;
+  border-radius: 5px;
+}
+/* Styling for the "Speichern" button in the bubble color section */
+/* Styling for the "Speichern" button in the bubble color section in the settings popup */
+.bubble-color-section button {
+  background: var(--primary-color);
+  color: var(--card-background);
+  border: 2px solid var(--primary-color); /* Added border for visibility */
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background var(--transition-speed), 
+              transform var(--transition-speed), 
+              border-color var(--transition-speed);
+  margin-left: 10px;
+  position: relative;
+}
+/* Ensure the label for bubble color selection is visible */
+.bubble-color-section label {
+  color: var(--text-color) !important; /* Forces a contrast-appropriate color */
+  font-weight: bold; /* Optional: matches the styling you want */
+}
+
+/* Add a small indicator (a colored dot) to the right of the button text */
+.bubble-color-section button::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* Hover state: Darken background and border, add a slight upward movement */
+.bubble-color-section button:hover {
+  background: #3a237a;
+  border-color: #3a237a;
+  transform: translateY(-2px);
+}

@@ -1,0 +1,1372 @@
+/* =====================================
+   Base (Light Mode) Variables
+   ===================================== */
+:root {
+  /* Primary Colors */
+  --primary-color: #6a4cac;
+  --secondary-color: #4a2e8a;
+  --accent-color: #e74c3c;
+  
+  /* Backgrounds */
+  --background: #f5f5f5;
+  --card-background: #fff;
+  --comment-background: #f9f9f9;
+  
+  /* Text Colors */
+  --text-color: #333;
+  --muted-text: #666;
+  /* For text on colored elements (buttons, navbars, etc.) */
+  --invert-text: #fff;
+  
+  /* Transition & Hover Effects */
+  --transition-speed: 0.3s;
+  --primary-hover: #5a3e98;
+  --secondary-hover: #3a237a;
+  --accent-hover: #cf3f2a;
+}
+
+/* =====================================
+   Dark Mode Overrides
+   Activate dark mode by adding the "dark-mode" class to <body>
+   ===================================== */
+body.dark-mode {
+  --primary-color: #4a2e8a;
+  --secondary-color: #321b66;
+  --accent-color: #c0392b;
+  
+  --background: #1e1e1e;
+  --card-background: #2c2c2c;
+  --comment-background: #2c2c2c;
+  
+  --text-color: #eee;
+  --muted-text: #aaa;
+  /* Ensure high contrast on colored elements */
+  --invert-text: #fff;
+  
+  --primary-hover: #3e2b7a;
+  --secondary-hover: #2d1852;
+  --accent-hover: #a83223;
+}
+
+/* =====================================
+   Global Styles & Transitions
+   ===================================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--background);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+body {
+  transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+/* =====================================
+   Containers & Cards
+   ===================================== */
+.user-feed,
+.friend-overview,
+.block,
+.post-box,
+.add-post {
+  background: var(--card-background);
+  color: var(--text-color);
+  transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+/* =====================================
+   Top Navigation
+   ===================================== */
+.navtop {
+  background: var(--secondary-color);
+  color: var(--invert-text);
+  transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+/* =====================================
+   Card / Post Box
+   ===================================== */
+.post-box {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+/* =====================================
+   Buttons & Interactive Elements
+   ===================================== */
+button,
+.profile-btn,
+.dark-mode-btn,
+.like-btn,
+.toggle-comments-btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: background var(--transition-speed), color var(--transition-speed), transform var(--transition-speed);
+}
+
+/* Dark Mode Button */
+.dark-mode-btn {
+  background: var(--primary-color);
+  color: var(--invert-text);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+}
+
+.dark-mode-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+/* Like Button (State & Hover) */
+.like-btn.liked {
+  background-color: #28a745; /* Example green */
+  color: #fff;
+  border-color: #28a745;
+  font-weight: bold;
+}
+
+.like-btn,
+.toggle-comments-btn {
+  background: var(--secondary-color);
+  color: var(--invert-text);
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+}
+
+.like-btn:hover,
+.toggle-comments-btn:hover {
+  background: var(--secondary-hover);
+  transform: translateY(-2px);
+}
+
+/* Like Count (hover info) */
+.like-count { 
+  cursor: help; 
+  border-bottom: 1px dotted var(--muted-text);
+}
+
+/* =====================================
+   Post Text Elements
+   ===================================== */
+.post-header,
+.post-content,
+.post-actions,
+.comments-section {
+  color: var(--text-color);
+  transition: color var(--transition-speed);
+}
+
+/* =====================================
+   Comment Styling
+   ===================================== */
+.comment {
+  background: var(--comment-background);
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  transition: background var(--transition-speed);
+}
+
+/* =====================================
+   Top Bar / Header
+   ===================================== */
+#topbar {
+  background: var(--primary-color);
+  padding: 1rem 0;
+  color: var(--invert-text);
+}
+
+#topbar .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo_icon .logo-text {
+  font-size: 1.5rem;
+  color: var(--invert-text);
+  text-decoration: none;
+}
+
+.coinblock {
+  font-size: 0.9rem;
+}
+
+/* =====================================
+   Navigation
+   ===================================== */
+.navigation {
+  background: var(--secondary-color);
+  padding: 0.5rem 0;
+}
+
+.flex_between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li a {
+  color: var(--invert-text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-speed);
+}
+
+.nav-list li a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+/* Chat Button */
+.chatbutton {
+  background: var(--card-background);
+  color: var(--secondary-color);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+body.dark-mode .chatbutton {
+  background: var(--card-background);
+  color: var(--invert-text);
+}
+
+.chatbutton:hover {
+  background: #ddd;
+}
+
+/* =====================================
+   Main Container & Layout
+   ===================================== */
+.main-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+/* =====================================
+   News Section
+   ===================================== */
+.news-section h2,
+.club-section h2 {
+  margin-bottom: 1rem;
+}
+
+.news-grid,
+.clubpostbox {
+  background: var(--card-background);
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.news-item img {
+  max-width: 100%;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.news-item h3 {
+  margin: 0.5rem 0;
+}
+
+/* =====================================
+   Club Section
+   ===================================== */
+.clubpostbox {
+  margin-bottom: 1rem;
+}
+
+.post h3 {
+  margin: 0 0 0.25rem;
+}
+
+/* =====================================
+   Sidebar
+   ===================================== */
+.sidebar {
+  border-left: 1px solid #ccc;
+  padding-left: 1rem;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+}
+
+.onlineUsers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.memberfield,
+.memberimg {
+  width: 60px;
+  height: 60px;
+}
+
+.memberimg {
+  background-size: cover;
+  border-radius: 50%;
+  background-position: center;
+  border: 2px solid #ccc;
+}
+
+/* =====================================
+   Footer
+   ===================================== */
+#footer {
+  background: var(--primary-color);
+  color: var(--invert-text);
+  padding: 1rem 0;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+#footer .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#footer p {
+  margin: 0 0 0.5rem 0;
+}
+
+#footer .coinblock a {
+  color: var(--invert-text);
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: text-decoration var(--transition-speed);
+}
+
+#footer .coinblock a:hover {
+  text-decoration: underline;
+}
+
+/* =====================================
+   Friend Overview & User List
+   ===================================== */
+.content {
+  margin: 2rem 0;
+}
+
+.block {
+  background: var(--card-background);
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.friend-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.friend-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Friend Request Section */
+.friend-section {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: var(--card-background);
+}
+
+.hidden {
+  display: none;
+}
+
+/* =====================================
+   Search Bar
+   ===================================== */
+.search-bar {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.search-bar input {
+  width: 80%;
+  max-width: 400px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border var(--transition-speed);
+}
+
+.search-bar input:focus {
+  border-color: var(--secondary-color);
+  outline: none;
+}
+
+/* =====================================
+   User List Grid & Cards
+   ===================================== */
+.user-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.user-card {
+  background: var(--card-background);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.user-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.user-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+.user-card .user-title {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.user-card .username {
+  color: var(--muted-text);
+  margin-bottom: 0.5rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: var(--invert-text);
+  margin-bottom: 0.5rem;
+}
+
+.badge.admin {
+  background: var(--accent-color);
+}
+
+.badge.user {
+  background: #3498db;
+}
+
+.view-profile-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--secondary-color);
+  color: var(--invert-text);
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background var(--transition-speed);
+}
+
+.view-profile-button:hover {
+  background: var(--secondary-hover);
+}
+
+/* =====================================
+   view_profile.php Specific Styles
+   ===================================== */
+.navtop {
+  background: var(--secondary-color);
+  padding: 1rem;
+  color: var(--invert-text);
+}
+
+.navtop > div {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navtop h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between icon and text */
+}
+.nav-icon {
+  height: 1em; /* Matches the text height */
+  width: auto; /* Maintain aspect ratio */
+  vertical-align: middle;
+}
+.navtop a {
+  color: var(--invert-text);
+  text-decoration: none;
+  margin-left: 1rem;
+  font-size: 1rem;
+  transition: text-decoration var(--transition-speed);
+}
+
+.navtop a:hover {
+  text-decoration: underline;
+}
+
+.profile-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: var(--card-background);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.profile-container img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid var(--primary-color);
+}
+
+.profile-container h2 {
+  margin: 0.5rem 0;
+  font-size: 2rem;
+  color: var(--text-color);
+}
+
+.profile-container p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.profile-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--secondary-color);
+  color: var(--invert-text);
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+
+.profile-btn:hover {
+  background: var(--secondary-hover);
+}
+.level-badge {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* Optional: Farben für verschiedene Level */
+/* Color changes every 10 levels */
+.level-badge[data-level^="1"]:not([data-level^="10"]) { /* Levels 1-9 */
+    background-color: #95a5a6; /* Grey */
+}
+.level-badge[data-level="10"] {
+    background-color: #2c3e50; /* Dark Blue */
+    animation: pulse 2s infinite;
+}
+.level-badge[data-level^="2"]:not([data-level^="20"]) { /* Levels 11-19 */
+    background-color: #2ecc71; /* Green */
+}
+.level-badge[data-level="20"] {
+    background-color: #3498db; /* Blue */
+    animation: pulse 2s infinite;
+}
+.level-badge[data-level^="3"]:not([data-level^="30"]) { /* Levels 21-29 */
+    background-color: #3498db; /* Blue */
+}
+.level-badge[data-level="30"] {
+    background-color: #9b59b6; /* Purple */
+    animation: pulse 2s infinite;
+}
+.level-badge[data-level^="4"]:not([data-level^="40"]) { /* Levels 31-39 */
+    background-color: #9b59b6; /* Purple */
+}
+.level-badge[data-level="40"] {
+    background-color: #f1c40f; /* Yellow */
+    animation: pulse 2s infinite;
+}
+.level-badge[data-level^="5"]:not([data-level^="50"]) { /* Levels 41-49 */
+    background-color: #f1c40f; /* Yellow */
+}
+.level-badge[data-level="50"] {
+    background-color: #e67e22; /* Orange */
+    animation: pulse 2s infinite;
+}
+
+/* Specific styling for the start of each 10-level block */
+.level-badge[data-level="1"] { background-color: #95a5a6; } /* Grey */
+.level-badge[data-level="11"] { background-color: #2ecc71; } /* Green */
+.level-badge[data-level="21"] { background-color: #3498db; } /* Blue */
+.level-badge[data-level="31"] { background-color: #9b59b6; } /* Purple */
+.level-badge[data-level="41"] { background-color: #f1c40f; } /* Yellow */
+
+/* Pulse Animation (if not already defined) */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+/* =====================================
+   Modal / Popup Styles
+   ===================================== */
+/* Modal Overlay */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 300px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* Close Button */
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Modal Actions */
+.modal-actions {
+  margin-top: 20px;
+}
+
+.modal-actions .btn {
+  margin: 0 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: color var(--transition-speed);
+}
+
+.close:hover {
+  color: var(--accent-color);
+}
+
+.indicator {
+  background: var(--accent-color);
+  color: var(--invert-text);
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+/* Keyframes for modal fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* =====================================
+   Responsive Adjustments
+   ===================================== */
+@media (max-width: 600px) {
+  .profile-container {
+    padding: 1rem;
+  }
+  .navtop h1 {
+    font-size: 1.5rem;
+  }
+  .navtop a {
+    font-size: 0.9rem;
+  }
+}
+
+/* =====================================
+   Friend Request Button
+   ===================================== */
+.friend-request-btn {
+  background: var(--secondary-color);
+  color: var(--invert-text);
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background var(--transition-speed), transform var(--transition-speed);
+  position: relative;
+}
+
+.friend-request-btn:hover {
+  background: var(--secondary-hover);
+  transform: translateY(-2px);
+}
+
+/* =====================================
+   Add Post & User Feed Enhancements
+   ===================================== */
+.add-post {
+  margin-top: 2rem;
+  background: var(--card-background);
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.add-post h3 {
+  margin-bottom: 1rem;
+}
+
+.add-post textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  margin-bottom: 0.5rem;
+}
+
+.add-post input[type="file"] {
+  margin-bottom: 0.5rem;
+}
+
+.post-box {
+  background: var(--card-background);
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--muted-text);
+  margin-bottom: 0.5rem;
+}
+
+.post-content p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* =====================================
+   Post Actions (Like & Comment Buttons)
+   ===================================== */
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.like-btn,
+.toggle-comments-btn {
+  background: var(--secondary-color);
+  color: var(--invert-text);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background var(--transition-speed), transform var(--transition-speed);
+}
+
+.like-btn:hover,
+.toggle-comments-btn:hover {
+  background: var(--secondary-hover);
+  transform: translateY(-2px);
+}
+
+.like-count {
+  font-weight: bold;
+  color: var(--muted-text);
+}
+
+/* =====================================
+   Comments Section
+   ===================================== */
+.comments-section {
+  border-top: 1px solid #ddd;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.comment {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background: var(--comment-background);
+  border-radius: 4px;
+}
+
+.comment-author {
+  font-weight: bold;
+}
+
+.comment-date {
+  font-size: 0.8rem;
+  color: var(--muted-text);
+  margin-left: 0.5rem;
+}
+
+.comment-content {
+  margin: 0.25rem 0 0 0;
+}
+
+/* =====================================
+   Comment Form
+   ===================================== */
+.comment-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  margin-bottom: 0.5rem;
+}
+
+.comment-form button {
+  background: var(--secondary-color);
+  color: var(--invert-text);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+
+.comment-form button:hover {
+  background: var(--secondary-hover);
+}
+
+/* =====================================
+   Cover Photo & Profile Extras
+   ===================================== */
+.cover-photo {
+  width: 100%;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 1rem;
+}
+
+.user-bio,
+.favorite-anime {
+  margin-top: 1rem;
+}
+
+.user-bio h3,
+.favorite-anime h3 {
+  margin-bottom: 0.5rem;
+}
+
+/* =====================================
+   Basic Popup Styling
+   ===================================== */
+.alpha-popup {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 500px;
+  background-color: var(--card-background);
+  padding: 25px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+  text-align: center;
+  border-radius: 8px;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.alpha-popup.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.alpha-popup-content h2 {
+  margin-top: 0;
+  color: #d9534f;
+}
+
+.alpha-popup-content p {
+  margin-bottom: 15px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.alpha-popup-content button {
+  background-color: #5cb85c;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.alpha-popup-content button:hover {
+  background-color: #4cae4c;
+}
+
+/* Optional: Backdrop Overlay (uncomment to use) */
+/*
+body.alpha-popup-active::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+*/
+
+/* =====================================
+   Profile Header & Friend Box Styles
+   ===================================== */
+
+/* Default Profile Header */
+.profile-header {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 60px;
+}
+.profile-header .cover-photo {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+/* Default Profile Picture Style (Centered, Larger) */
+.profile-header .profile-pic {
+  position: absolute;
+  bottom: -60px; /* Adjust overlap as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  border: 5px solid var(--invert-text); /* Ensures visibility in both themes */
+  border-radius: 50%;
+  z-index: 2;
+  background: var(--card-background);
+}
+
+/* Friend Box */
+.friend-box {
+  border: 1px solid var(--muted-text);
+  border-radius: 4px;
+  padding: 15px;
+  background: var(--card-background);
+  margin-top: 20px;
+}
+.friend-box h3 {
+  margin-top: 0;
+}
+
+/* Clickable friend list items (already matching newer rules) */
+.friend-list {
+  list-style: none;
+  padding: 0;
+}
+.friend-list li {
+  margin-bottom: 10px;
+}
+.friend-list li a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.friend-list li img {
+  border-radius: 50%;
+}
+
+/* =====================================
+   Profile Page Layout & Modern Form Styles
+   ===================================== */
+
+/* Two-Column Profile Layout */
+.profile-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  margin: 20px;
+}
+.friend-sidebar {
+  width: 25%;
+}
+.profile-content {
+  width: 75%;
+}
+
+/* Modern Form Styles */
+.modern-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.modern-form label {
+  display: block;
+  margin: 1rem 0 0.3rem;
+  font-weight: bold;
+}
+.modern-form input[type="text"],
+.modern-form input[type="password"],
+.modern-form input[type="email"],
+.modern-form textarea,
+.modern-form input[type="file"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.modern-form textarea {
+  resize: vertical;
+}
+.modern-form .profile-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background: #3498db;
+  color: #fff;
+  font-size: 1rem;
+}
+.modern-form .profile-btn:hover {
+  background: #2980b9;
+}
+.modern-form p.msg {
+  color: red;
+  margin-top: 1rem;
+}
+
+/* -------------------------------------
+   Alternate Profile Header (Modern Variant)
+   Apply by adding the "modern" class to .profile-header
+------------------------------------- */
+.profile-header.modern {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 60px;
+}
+.profile-header.modern .cover-photo {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+.profile-header.modern .profile-pic {
+  position: absolute;
+  bottom: -40px;  /* Adjust to control overlap */
+  left: 20px;     /* Adjust horizontal placement */
+  width: 80px;
+  height: 80px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  z-index: 2;
+  background: #fff;
+}
+.exp-bar {
+    margin: 15px 0;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+.progress-bar {
+    height: 20px;
+    background: #ddd;
+    border-radius: 10px;
+    margin: 5px 0;
+}
+.progress-fill {
+    height: 100%;
+    background: #4CAF50;
+    border-radius: 10px;
+    transition: width 0.3s;
+}
+.exp-label, .exp-to-next {
+    font-size: 0.9em;
+    color: #666;
+}
+/* Note: Use the default .profile-header styles if the modern variant is not needed. */
+/* Level Up Notification */
+.level-up-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #8a2be2, #ff6bff);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.level-up-notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.level-up-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.level-up-icon {
+    font-size: 2rem;
+}
+
+.level-up-text h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+}
+
+.level-up-text p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* EXP Notification */
+.exp-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    z-index: 1000;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.exp-notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+    .marketplace-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: var(--card-background);
+      border-radius: 10px;
+      box-shadow: var(--popup-shadow);
+    }
+    .market-avatar {
+      display: inline-block;
+      width: 150px;
+      margin: 10px;
+      text-align: center;
+      background: var(--light-bg);
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .market-avatar img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .market-avatar .price {
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+    .market-avatar .seller {
+      font-size: 0.85em;
+      color: var(--muted-text);
+    }
+    .market-avatar button {
+      margin-top: 5px;
+      padding: 6px 12px;
+      background: var(--secondary-color);
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .market-avatar button:hover {
+      background: #3a237a;
+    }
+    .offer-form {
+      margin-top: 30px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+    }
+    .offer-form select, .offer-form input {
+      padding: 6px;
+      margin-right: 10px;
+    }
+    .offer-form button {
+      padding: 6px 14px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+	.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.avatar-option {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.avatar-option:hover {
+  border-color: var(--primary-color);
+}
+
+.avatar-option.selected {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px var(--accent-color);
+}
+.market-error-box {
+  background: #ffe5e5;
+  color: #c0392b;
+  padding: 12px;
+  border: 1px solid #c0392b;
+  border-radius: 6px;
+  margin: 15px 0;
+  font-weight: 500;
+}
+.watermarked-avatar {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.watermarked-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.watermarked-avatar .watermark {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  pointer-events: none;
+}
