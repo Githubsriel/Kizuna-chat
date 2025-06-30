@@ -30,10 +30,13 @@ This project is open source under the [MIT License](LICENSE).
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to change.
 
-## 📫 Contact
+## 📫 Info/Contact
 
 * **Website:** [kizuna-chat.de](https://kizuna-chat.de)
 * **Inspiration:** [tandro.de](https://tandro.de)
+* **Email:** [contact@kizuna-chat.de](mailto:contact@kizuna-chat.de)
+
+## 📫 Contact
 
 ---
 
