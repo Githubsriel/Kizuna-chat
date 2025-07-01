@@ -1,6 +1,5 @@
 <?php
 include_once 'main.php';
-// No additional session_start() call if main.php already handles it.
 header('Content-Type: application/json');
 
 // Optional: only allow logged-in users
