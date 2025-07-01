@@ -34,7 +34,7 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 
 * **Website:** [kizuna-chat.de](https://kizuna-chat.de)
 * **Inspiration:** [tandro.de](https://tandro.de)
-* **Email:** [contact@kizuna-chat.de](mailto:contact@kizuna-chat.natsuk4sh1i.de)
+* **Email:** [contact@kizuna-chat.natsuk4sh1i.de](mailto:contact@kizuna-chat.natsuk4sh1i.de)
 
 
 ---
